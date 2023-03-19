@@ -17,6 +17,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^1.0.2"
+        "@inertiajs/vue3": "^1.0.2",
+        "nprogress": "^0.2.0"
     }
 }
