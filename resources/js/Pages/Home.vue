@@ -1,52 +1,61 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import 'aos/dist/aos.css';
+import AOS from 'aos'
 
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-});
+import { Head } from '@inertiajs/vue3';
+import Header from './../Partials/Header.vue'
+import PageIllustration from './../Partials/PageIllustration.vue'
+import HeroHome from './../Partials/HeroHome.vue'
+import Stats from './../Partials/Stats.vue'
+import Carousel from './../Partials/Carousel.vue'
+import Tabs from './../Partials/Tabs.vue'
+import Process from './../Partials/Process.vue'
+import PricingTables from './../Partials/PricingTables.vue'
+import TestimonialsBlocks from './../Partials/TestimonialsBlocks.vue'
+import FeaturesBlocks from './../Partials/FeaturesBlocks.vue'
+import Cta from './../Partials/Cta.vue'
+import Footer from './../Partials/Footer.vue'
+import {onMounted} from "vue";
+
+onMounted(()=> {
+    AOS.init({
+        once: true,
+        disable: 'phone',
+        duration: 600,
+        easing: 'ease-out-sine',
+    })
+})
 </script>
 
 <template>
     <Head title="Home" />
 
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
-    >
-        <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Dashboard</Link
-            >
+    <!-- Site header -->
+    <Header can-login="{{canLogin}}" can-register="{{canRegister}}"/>
 
-            <template v-else>
-                <Link
-                    :href="route('login')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Log in</Link
-                >
+    <!-- Page content -->
+    <main class="grow">
 
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Register</Link
-                >
-            </template>
+        <!-- Page illustration -->
+        <div class="relative max-w-6xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
+            <PageIllustration />
         </div>
 
-    </div>
+        <!-- Page sections -->
+        <HeroHome />
+        <Stats />
+        <Carousel />
+        <Tabs />
+        <Process />
+        <PricingTables />
+        <TestimonialsBlocks />
+        <FeaturesBlocks />
+        <Cta />
+
+    </main>
+
+    <!-- Site footer -->
+    <Footer />
+
 </template>
 
-<style>
-.bg-dots-darker {
-    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-    .dark\:bg-dots-lighter {
-        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-    }
-}
-</style>

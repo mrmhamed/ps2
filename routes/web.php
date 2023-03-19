@@ -18,6 +18,30 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
+Route::get('/about', function (){
+    return Inertia::render('About');
+})->name('about.index');
+Route::get('/blog', function (){
+    return Inertia::render('Blog');
+})->name('blog.index');
+Route::get('/blog-post', function (){
+    return Inertia::render('BlogPost');
+})->name('blog-post.index');
+Route::get('/testimonials', function (){
+    return Inertia::render('Testimonials');
+})->name('testimonials.index');
+Route::get('/help', function (){
+    return Inertia::render('Help');
+})->name('help.index');
+Route::get('/contact', function (){
+    return Inertia::render('Contact');
+})->name('contact.index');
+Route::get('/404', function (){
+    return Inertia::render('PageNotFound');
+})->name('error404');
+
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
